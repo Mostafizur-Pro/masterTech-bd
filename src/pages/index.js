@@ -1,7 +1,8 @@
+import RootLayout from "@/components/Layouts/RootLayout";
 import HomePageBanner from "@/components/UI/Banner";
 import Head from "next/head";
 
-export default function Home() {
+function HomePage() {
   return (
     <div>
       <Head>
@@ -17,3 +18,9 @@ export default function Home() {
     </div>
   );
 }
+
+export default HomePage;
+
+HomePage.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};
