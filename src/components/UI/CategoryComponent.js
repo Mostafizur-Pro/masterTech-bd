@@ -5,7 +5,7 @@ function CategoryComponent({ category }) {
   return (
     <div>
       {" "}
-      <tr>
+     
         <th className="text-lg">{category.id}</th>
 
         <th className="flex items-center gap-2">
@@ -17,7 +17,7 @@ function CategoryComponent({ category }) {
             <button className="btn btn-success text-white">Select</button>
           </Link>
         </th>
-      </tr>
+     
     </div>
   );
 }
