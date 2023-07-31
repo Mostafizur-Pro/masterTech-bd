@@ -11,18 +11,27 @@ const client = new MongoClient(uri, {
 
 async function run(req, res) {
   try {
+    if (req.method !== "GET") {
+      res.setHeader("Allow", ["GET"]);
+      return res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
+
     await client.connect();
 
     const productCollection = client
       .db("master-tech")
       .collection("AllProducts");
 
-    if (req.method === "GET") {
-      const products = await productCollection.find({}).toArray();
-      return res.status(200).json(products);
+    const { id } = req.query.productsId;
+    const product = await productCollection.findOne(id);
+
+    if (product) {
+      res.status(200).json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
     }
   } finally {
   }
 }
-// run().catch(console.dir);
+
 export default run;
