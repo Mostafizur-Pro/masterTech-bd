@@ -102,12 +102,13 @@ function LoginPage() {
         <div className="flex flex-col justify-center items-center w-full lg:flex-row">
           <div
             className="text-7xl hover:text-success"
-            onClick={
-              () =>
-                signIn("google", {
-                  callbackUrl: `${process.env.URL_LIVE_LINK}`,
-                })
-              // signIn("google", { callbackUrl: "http://localhost:3000" })
+            onClick={() =>
+              // signIn("google", {
+              //   callbackUrl: `${process.env.URL_LIVE_LINK}`,
+              // })
+              signIn("google", {
+                callbackUrl: "https://master-tect-bd-mostafizur-pro.vercel.app",
+              })
             }
           >
             <FaGoogle />
@@ -117,10 +118,16 @@ function LoginPage() {
             className="text-7xl hover:text-success"
             onClick={
               () =>
+                // signIn("github", {
+                //   // callbackUrl: `${process.env.URL_LIVE_LINK}`,
+                // })
                 signIn("github", {
-                  callbackUrl: `${process.env.URL_LIVE_LINK}`,
+                  callbackUrl:
+                    "https://master-tect-bd-mostafizur-pro.vercel.app",
                 })
-              // signIn("github", { callbackUrl: "http://localhost:3000" })
+              // signIn("github", {
+              //   callbackUrl: "http://localhost:3000/",
+              // })
             }
           >
             <FaGithub />

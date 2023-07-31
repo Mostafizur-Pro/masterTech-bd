@@ -18,7 +18,7 @@ const ProductDetails = ({ product }) => {
           </div>
           <div className="col-span-1">
             <h1 className="text-2xl">{product?.name}</h1>
-            <p>
+            <div>
               {product?.ratings == 4.5 ? (
                 <>
                   <div className="rating rating-md rating-half">
@@ -86,8 +86,8 @@ const ProductDetails = ({ product }) => {
               ) : (
                 <></>
               )}
-            </p>
-            <p>
+            </div>
+            <div>
               {product?.ratings > 4.5 ? (
                 <>
                   <div className="rating rating-md rating-half">
@@ -155,7 +155,7 @@ const ProductDetails = ({ product }) => {
               ) : (
                 <></>
               )}
-            </p>
+            </div>
             <h1 className="mt-5">
               <span className="text-lg bg-success uppercase text-white p-2 rounded-lg">
                 {product?.status}
