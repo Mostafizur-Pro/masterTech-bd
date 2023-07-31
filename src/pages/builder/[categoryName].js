@@ -1,13 +1,14 @@
 import RootLayout from "@/components/Layouts/RootLayout";
-// import { addToBuilder } from "@/redux/pcBuilder/pcBuilderSlice";
+import { addToBuilder } from "@/redux/store/actions/builderActions";
+
 import Link from "next/link";
 import React from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const BuilderItems = ({ categories }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const addProductToBuilder = (productData) => {
-    // dispatch(addToBuilder(productData));
+    dispatch(addToBuilder(productData));
     console.log("Builder", productData);
   };
   return (

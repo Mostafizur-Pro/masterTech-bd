@@ -7,10 +7,11 @@ import { FiMonitor } from "react-icons/fi";
 import { LuHardDrive } from "react-icons/lu";
 
 import RootLayout from "@/components/Layouts/RootLayout";
+import { useSelector } from "react-redux";
 
 function PCBuilder() {
-  //   const { data } = useSelector((state) => state.pcBuilder);
-  // console.log("components", components);
+  const { builder } = useSelector((state) => state.builder);
+  console.log("components", builder);
   // const [disabled, setDisabled] = useState(false);
   const categories = [
     {
@@ -96,7 +97,7 @@ function PCBuilder() {
                   </tr>
                 </thead>
                 <tbody>
-                  {categories?.map((c) => (
+                  {/* {categories?.map((c) => (
                     <>
                       <tr>
                         <th className="text-lg">{c.id}</th>
@@ -106,7 +107,6 @@ function PCBuilder() {
                           <p className="text-lg">{c.name}</p>
                         </th>
                         <th>
-                          {" "}
                           <Link href={`/builder/${c?.name}`}>
                             <button className="btn btn-success text-white">
                               Select
@@ -115,7 +115,89 @@ function PCBuilder() {
                         </th>
                       </tr>
                     </>
-                  ))}
+                  ))} */}
+                  {!builder.length >= 0 ? (
+                    <>
+                      {categories?.map((c) => (
+                        <>
+                          <tr>
+                            <th className="text-lg">{c.id}</th>
+
+                            <th className="flex items-center gap-2">
+                              <p className="text-5xl">{c.logo}</p>
+                              <p className="text-lg">{c.name}</p>
+                            </th>
+                            <th>
+                              <Link href={`/builder/${c?.name}`}>
+                                <button className="btn btn-success text-white">
+                                  Select
+                                </button>
+                              </Link>
+                            </th>
+                          </tr>
+                        </>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      {builder.map((build) => (
+                        <>
+                          {categories?.map((c) => (
+                            <>
+                              <tr>
+                                <th className="text-lg">{c.id}</th>
+
+                                <th className="flex items-center gap-2">
+                                  {c.name === build.categoryName ? (
+                                    <>
+                                      {" "}
+                                      <div className="flex">
+                                        <picture>
+                                          <img
+                                            src={build.imageUrl}
+                                            className="w-20"
+                                          ></img>
+                                        </picture>
+                                        <div>
+                                          <p className="text-lg">{c.name}</p>
+                                          <p className="text-lg">
+                                            {build.name}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <p className="text-5xl">{c.logo}</p>
+                                      <p className="text-lg">{c.name}</p>
+                                    </>
+                                  )}
+                                </th>
+                                <th>
+                                  {c.name === build.categoryName ? (
+                                    <>
+                                      {" "}
+                                      <Link href={`/builder/${c?.name}`}>
+                                        <button className="btn btn-warning text-white">
+                                          Cancel
+                                        </button>
+                                      </Link>
+                                    </>
+                                  ) : (
+                                    <Link href={`/builder/${c?.name}`}>
+                                      <button className="btn btn-success text-white">
+                                        Select
+                                      </button>
+                                    </Link>
+                                  )}{" "}
+                                </th>
+                              </tr>
+                            </>
+                          ))}
+                        </>
+                      ))}
+                    </>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -140,3 +222,57 @@ export default PCBuilder;
 PCBuilder.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
+
+//  <>
+//    {builder.map((build) => (
+//      <>
+//        {categories?.map((c) => (
+//          <>
+//            <tr>
+//              <th className="text-lg">{c.id}</th>
+
+//              <th className="flex items-center gap-2">
+//                {c.name === build.categoryName ? (
+//                  <>
+//                    {" "}
+//                    <div className="flex">
+//                      <picture>
+//                        <img src={build.imageUrl} className="w-20"></img>
+//                      </picture>
+//                      <div>
+//                        <p className="text-lg">{c.name}</p>
+//                        <p className="text-lg">{build.name}</p>
+//                      </div>
+//                    </div>
+//                  </>
+//                ) : (
+//                  <>
+//                    <p className="text-5xl">{c.logo}</p>
+//                    <p className="text-lg">{c.name}</p>
+//                  </>
+//                )}
+//              </th>
+//              <th>
+//                {c.name === build.categoryName ? (
+//                  <>
+//                    {" "}
+//                    <Link href={`/builder/${c?.name}`}>
+//                      <button className="btn btn-warning text-white">
+//                        Cancel
+//                      </button>
+//                    </Link>
+//                  </>
+//                ) : (
+//                  <Link href={`/builder/${c?.name}`}>
+//                    <button className="btn btn-success text-white">
+//                      Select
+//                    </button>
+//                  </Link>
+//                )}{" "}
+//              </th>
+//            </tr>
+//          </>
+//        ))}
+//      </>
+//    ))}
+//  </>;
