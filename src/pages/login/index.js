@@ -32,10 +32,7 @@ function LoginPage() {
             Sign in to your account
           </h2>
         </div>
-        <form
-          className="mt-8 space-y-6"
-          // onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="email-address" className="sr-only">
