@@ -14,7 +14,7 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: `${process.env.URL_LIVE_LINK}/login`,
+    signIn: `/login`,
   },
 };
 
