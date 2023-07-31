@@ -8,6 +8,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useRouter } from "next/router";
 import auth from "@/firebase/firebase.auth";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { signIn } from "next-auth/react";
 
 function LoginPage() {
   const router = useRouter();
@@ -22,8 +23,10 @@ function LoginPage() {
   const onSubmit = (data) => {
     // console.log(data);
     signInWithEmailAndPassword(data.email, data.password);
-    if (data) {
+    if (user) {
       router.push("/");
+    } else {
+      alert("Please Provide your mail & password");
     }
     // Add login logic here
   };
@@ -85,23 +88,6 @@ function LoginPage() {
                 </Link>
               </p>
             </div>
-
-            {/* <div>
-              <div
-                onClick={() =>
-                  signIn("google", { callbackUrl: "http://localhost:3000" })
-                }
-              >
-                Google
-              </div>
-              <div
-                onClick={() =>
-                  signIn("github", { callbackUrl: "http://localhost:3000" })
-                }
-              >
-                Github
-              </div>
-            </div> */}
           </div>
 
           <div>
@@ -116,8 +102,12 @@ function LoginPage() {
         <div className="flex flex-col justify-center items-center w-full lg:flex-row">
           <div
             className="text-7xl hover:text-success"
-            onClick={() =>
-              signIn("google", { callbackUrl: "http://localhost:3000" })
+            onClick={
+              () =>
+                signIn("google", {
+                  callbackUrl: `${process.env.URL_LIVE_LINK}`,
+                })
+              // signIn("google", { callbackUrl: "http://localhost:3000" })
             }
           >
             <FaGoogle />
@@ -125,8 +115,12 @@ function LoginPage() {
           <div className="divider lg:divider-horizontal">OR</div>
           <div
             className="text-7xl hover:text-success"
-            onClick={() =>
-              signIn("github", { callbackUrl: "http://localhost:3000" })
+            onClick={
+              () =>
+                signIn("github", {
+                  callbackUrl: `${process.env.URL_LIVE_LINK}`,
+                })
+              // signIn("github", { callbackUrl: "http://localhost:3000" })
             }
           >
             <FaGithub />
