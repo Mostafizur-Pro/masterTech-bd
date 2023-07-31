@@ -1,8 +1,11 @@
+import RootLayout from "@/components/Layouts/RootLayout";
+import Product from "@/components/UI/Product";
+import ProductBanner from "@/components/UI/ProductBanner";
 import Head from "next/head";
 import Link from "next/link";
 
 function CategoryName({ categories }) {
-  console.log(categories);
+  // console.log(categories);
   return (
     <div>
       <Head>
@@ -61,9 +64,9 @@ function CategoryName({ categories }) {
           </div>
           <div class="w-4/5 bg-gray-100 p-4">
             {/* ----------------Main Page-------------- */}
-            hello
-            {/* <ProductBanner categories={categories} />
-            <ProductHomePage categories={categories} /> */}
+
+            <ProductBanner categories={categories} />
+            <Product categories={categories} />
           </div>
         </div>
       </div>
