@@ -1,8 +1,18 @@
 import Link from "next/link";
 import { RxAvatar } from "react-icons/rx";
 import CustomButton from "../hooks/Button";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "@/firebase/firebase.auth";
+import { signOut } from "firebase/auth";
 
 function Navbar() {
+  const [user, loading, error] = useAuthState(auth);
+  // console.log("user", user);
+  // const { data: session } = useSession();
+  const logout = () => {
+    signOut(auth);
+  };
+
   const menuItems = (
     <>
       <li>
@@ -122,6 +132,11 @@ function Navbar() {
               </CustomButton>
             </div>
             {/* ------------------------------------------ */}
+            {user && (
+              <>
+                <button onClick={logout}>Logout</button>
+              </>
+            )}
           </div>
         </div>
       </div>

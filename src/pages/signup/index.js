@@ -4,8 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import loginImage from "@/assets/login/login.gif";
 import { useForm } from "react-hook-form";
+import auth from "@/firebase/firebase.auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useRouter } from "next/router";
 
 function SignUp() {
+  const router = useRouter();
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   const {
     register,
     handleSubmit,
@@ -15,8 +21,9 @@ function SignUp() {
 
   const onSubmit = (data) => {
     console.log(data);
-    //    createUserWithEmailAndPassword(data.email, data.password);
+    createUserWithEmailAndPassword(data.email, data.password);
     //    notify();
+    router.push("/");
   };
   return (
     <div>

@@ -5,8 +5,14 @@ import loginImage from "@/assets/login/login.gif";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { useRouter } from "next/router";
+import auth from "@/firebase/firebase.auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 function LoginPage() {
+  const router = useRouter();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
   const {
     register,
     handleSubmit,
@@ -14,8 +20,11 @@ function LoginPage() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    //   signInWithEmailAndPassword(data.email, data.password);
+    // console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
+    if (data) {
+      router.push("/");
+    }
     // Add login logic here
   };
   return (

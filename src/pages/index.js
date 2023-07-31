@@ -19,14 +19,14 @@ function HomePage({ products }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <CustomButton>
+      {/* <CustomButton>
         <Link href="http://localhost:3000/api/products">Click</Link>
       </CustomButton>
       <CustomButton>
         <Link href="http://localhost:3000/api/products/64c54eb6aee1c697bedecf96">
           Click id
         </Link>
-      </CustomButton>
+      </CustomButton> */}
       <HomePageBanner />
       <TopCategories />
       <FeatureProducts products={products} />
